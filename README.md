@@ -4,17 +4,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This is the project layout:
 
 src:
-App.js contains the "home" page content
-viz.js is the vizualization page
-Routes.js has the routes for home page and viz page
-Index.js is component that renders the routes
+- App.js contains the "home" page content
+- viz.js is the vizualization page
+- Routes.js has the routes for home page and viz page
+- Index.js is component that renders the routes
 
-server.js is the backend. It contains the post request for the file upload.
+server.js is the backend. 
+- It contains the post request for the file upload.
 - Posts file to data folder
 
 data folder:
-Contains the uploaded json file by user. 
-TODO add errors etc when user uploads a file that is not a .josn file
+- Contains the uploaded json file by user. 
+- TODO add errors etc when user uploads a file that is not a .josn file
 
 
 
