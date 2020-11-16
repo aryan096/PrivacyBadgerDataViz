@@ -1,20 +1,22 @@
 import React,{Component} from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
-
-import Button from 'react-bootstrap/Button'
-
+import * as D3 from 'd3';
+import { useHistory } from 'react-router'
 
 
 class App extends Component{
+
   constructor(props) {
       super(props);
         this.state = {
+          isDisabled: false,
           selectedFile: null
         }
-
     }
+
     onChangeHandler=event=>{
        this.setState({
          selectedFile: event.target.files[0],
@@ -23,6 +25,9 @@ class App extends Component{
      }
 
      onClickHandler = () => {
+       this.setState({
+         isDisabled: true
+          });
         const data = new FormData()
         data.append('file', this.state.selectedFile)
         axios.post("http://localhost:8000/upload", data, {
@@ -33,8 +38,11 @@ class App extends Component{
       })
      }
 
+
   render() {
   return (
+
+      <Router>
     <div className="container" style={{ width: "600px" }}>
       <div className="my-3">
         <h1>Data Privacy </h1>
@@ -57,10 +65,15 @@ class App extends Component{
               </div>
             </form>
             </div>
-          <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button>
+          <button disabled={this.state.isDisabled} type="button"
+          class="btn btn-success btn-block" onClick={this.onClickHandler}> Upload </button>
+          <button type="button" class="btn btn-success btn-block" style={{backgroundColor: '#FFFFFF', borderColor: 'white'}}>
+          <a href="/viz"> <button type="button" class="btn btn-success btn-block"
+          style={{backgroundColor: 'blue',  borderColor: 'blue'}}> Show Viz!</button></a></button>
         </div>
       </div>
     </div>
+    </Router>
   );
 }}
 
