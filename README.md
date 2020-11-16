@@ -9,12 +9,13 @@ This is the project layout:
 - Routes.js has the routes for home page and viz page
 - Index.js is component that renders the routes
 
-### server.js is the backend. 
-- It contains the post request for the file upload.
+### server.js:
+- Backend
+- It contains the POST and GET request for the file upload
 - Posts file to data folder
 
-### data folder:
-- Contains the uploaded json file by user. 
+### data:
+- Folder that contains the uploaded .json file by user
 - TODO add errors etc when user uploads a file that is not a .josn file
 
 
