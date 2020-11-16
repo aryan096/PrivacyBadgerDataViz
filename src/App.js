@@ -12,6 +12,7 @@ class App extends Component{
   constructor(props) {
       super(props);
         this.state = {
+          msg : 'Upload',
           isDisabled: false,
           selectedFile: null
         }
@@ -26,6 +27,7 @@ class App extends Component{
 
      onClickHandler = () => {
        this.setState({
+         msg : 'Uploaded!',
          isDisabled: true
           });
         const data = new FormData()
@@ -66,7 +68,7 @@ class App extends Component{
             </form>
             </div>
           <button disabled={this.state.isDisabled} type="button"
-          class="btn btn-success btn-block" onClick={this.onClickHandler}> Upload </button>
+          class="btn btn-success btn-block" onClick={this.onClickHandler}> {this.state.msg} </button>
           <button type="button" class="btn btn-success btn-block" style={{backgroundColor: '#FFFFFF', borderColor: 'white'}}>
           <a href="/viz"> <button type="button" class="btn btn-success btn-block"
           style={{backgroundColor: 'blue',  borderColor: 'blue'}}> Show Viz!</button></a></button>
