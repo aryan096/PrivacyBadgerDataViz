@@ -15,7 +15,7 @@ This is the project layout:
 - Posts file to data folder
 
 ### data:
-- Folder that contains the uploaded .json file by user
+- Folder inside src that contains the uploaded .json file by user, all files uploaded will be named 'data.json' (should probably not do this)
 - TODO add errors etc when user uploads a file that is not a .josn file
 
 
