@@ -1,9 +1,7 @@
 import React from "react";
-import data from "./data/data.json"
-
 
 function get_top10_trackers() { 
-
+  var data = require('./data/data.json');
   var snitches = {};
   
   // Variable for Top __ websites with trackers on different websites
@@ -33,21 +31,17 @@ function get_top10_trackers() {
   // Create a new array with only the first top_num items
   var sorted_snitches_top = items.slice(0, top_num)
 
-  var top_trackers_dict = {}
-
-  for (let snitch in sorted_snitches_top) { 
-    var website = sorted_snitches_top[snitch][0]
-    var count = sorted_snitches_top[snitch][1]
-    top_trackers_dict[website] = count;
-  }
-
-  return top_trackers_dict;
+  return sorted_snitches_top;
 }
 
 function Viz() {
 
-    var top_trackers_dict = get_top10_trackers();
-    console.log(top_trackers_dict)
+    try {
+      var sorted_snitches_top = get_top10_trackers();
+    } catch(err){ 
+      console.log(err)
+    }
+    console.log(sorted_snitches_top)
 
     return (
       <div>
