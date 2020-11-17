@@ -6,10 +6,10 @@ app.use(cors())
 
 var storage = multer.diskStorage({
       destination: function (req, file, cb) {
-      cb(null, 'data')
+      cb(null, './src/data')
     },
     filename: function (req, file, cb) {
-      cb(null, Date.now() + '-' +file.originalname )
+      cb(null, 'data.json')
     }
 })
 
