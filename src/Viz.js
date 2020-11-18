@@ -1,21 +1,29 @@
-import React from "react";
+import React,{Component} from 'react';
 
-function get_top_trackers() { 
-  var data = require('./data/data.json');
+
+
+var data = require('./data/data.json');
+const social = data.snitch_map;
+
+class Viz extends Component{
+
+
+  get_top_trackers() {
+
   var snitches = {};
-  
+
   // Variable for Top __ websites with trackers on different websites
   var top_num = 10
 
   for (let tracker in data['snitch_map']) {
     var websites = data['snitch_map'][tracker];
-    for (var i = 0; i < websites.length; i++) { 
-      if (websites[i] in snitches){ 
+    for (var i = 0; i < websites.length; i++) {
+      if (websites[i] in snitches){
         snitches[websites[i]] += 1
-      } else { 
+      } else {
         snitches[websites[i]] = 1;
       }
-    } 
+    }
   }
 
   // Create items array
@@ -33,31 +41,38 @@ function get_top_trackers() {
 
   return sorted_snitches_top;
 }
+ Vizu() {
 
-function Viz() {
-
-    // TODO: Things get fucked if there isn't already a data.json file in the data folder. FIX THIS 
-    // get an array of top tracking websites with the number of trackers that were snitching to that website 
+    // TODO: Things get fucked if there isn't already a data.json file in the data folder. FIX THIS
+    // get an array of top tracking websites with the number of trackers that were snitching to that website
     try {
-      var sorted_snitches_top = get_top_trackers();
-    } catch(err){ 
+      var sorted_snitches_top = this.get_top_trackers();
+    } catch(err){
       console.log(err)
     }
     console.log(sorted_snitches_top)
+  }
 
     // TODO: Function to get the names of the trackers for these top websites
 
-    // TODO: Function to get total number of blocked trackers 
+    // TODO: Function to get total number of blocked trackers
 
-    // TODO: Function to get total number of allowed trackers 
+    // TODO: Function to get total number of allowed trackers
 
 
+render(){
+  const v = this.get_top_trackers()
     return (
-      <div>
-        <p>This is the second page.</p>
+      <div className="container" style={{ width: "600px" }}>
+        <div className="my-3">
+        <h1> Vizualization {this.Vizu()}</h1>
+        <h4>This is our breakdown of your data! </h4>
+        <ul>{v.map(datas => (<li> {datas[1]}-{datas[0]}</li>))}</ul>
       </div>
-    );
+      </div>
 
+    );
+}
 }
 
 export default Viz;
