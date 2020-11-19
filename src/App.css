@@ -24,8 +24,58 @@
   color: white;
 }
 
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+.a{
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+li{
+list-style-type:none;
+}
 .App-link {
   color: #61dafb;
+}
+
+#chart {
+  
+	border: 1px solid #CCC;
+  padding : 0.5px;
+}
+
+.bar {
+	shape-rendering: crispEdges;
+ padding: 10px;
+}
+
+.bar-label{
+    fill: #000;
+	text-anchor: middle;
+	font-size: 18px;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.gridline path,
+.gridline line{
+	fill: none;
+	stroke: #ccc;
+	shape-rendering: crispEdges;
 }
 
 @keyframes App-logo-spin {
