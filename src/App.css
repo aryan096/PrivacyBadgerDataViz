@@ -13,6 +13,14 @@
   }
 }
 
+.Upload{
+  width: 665px;
+  border-color: #E5FFCC;
+  border-style: solid;
+  padding: 20px;
+  margin-bottom: 20px
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -27,13 +35,10 @@
 .button {
   font: bold 11px Arial;
   text-decoration: none;
-  background-color: #EEEEEE;
+  background-color: #FF6666;
   color: #333333;
   padding: 2px 6px 2px 6px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
+
 }
 .a{
   display: block;
@@ -48,7 +53,7 @@ list-style-type:none;
 }
 
 #chart {
-  
+
 	border: 1px solid #CCC;
   padding : 0.5px;
 }
@@ -59,9 +64,10 @@ list-style-type:none;
 }
 
 .bar-label{
-    fill: #000;
+  fill: #000;
 	text-anchor: middle;
 	font-size: 18px;
+  padding: 10px;
 }
 
 .axis path,
