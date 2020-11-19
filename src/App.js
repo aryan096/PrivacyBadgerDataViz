@@ -45,38 +45,45 @@ class App extends Component{
   return (
 
       <Router>
-    <div className="container" style={{ width: "600px" }}>
-      <div className="my-3">
-        <h1>Data Privacy </h1>
+      <div className="App-header">
+    <div className="container" style={{ width: "700px" }}>
+        <h1>Data Privacy</h1>
           <p> Welcome! Have you ever felt that the internet knows too much about you?
           Or have you felt ads that have just been too invasive? We are here to help you
           learn what the internet knows about you!
           Upload your tracking data from Privacy Badger and we will find the answers
-          you're looking for
+          you're looking for.
           </p>
+          <div className="Upload">
         <h4>Choose file to upload</h4>
-    </div>
 
-    <div class="container">
+        <div className="container" style={{ width: "600px" }}>
     	<div class="row">
     	  <div class="col-md-6">
     	      <form method="post" action="#" id="#">
               <div class="form-group files">
-              <label>Upload Your File </label>
               <input type="file" name="file" onChange={this.onChangeHandler}/>
               </div>
             </form>
             </div>
+          </div>
+          </div>
+              </div>
           <button disabled={this.state.isDisabled} type="button"
-          class="btn btn-success btn-block" onClick={this.onClickHandler}> {this.state.msg} </button>
-          <button type="button" class="btn btn-success btn-block" style={{backgroundColor: '#FFFFFF', borderColor: 'white'}}>
+          style={{backgroundColor: '#CCFF99', color: 'black', height: 50, borderColor: '#CCFF99'}}
+          class="btn btn-success btn-block" onClick={this.onClickHandler}>
+          {this.state.msg} </button>
+          <button type="button" class="btn btn-success btn-block"
+          style={{backgroundColor: '#FF6666', borderColor: '#FF6666'}}>
           <a href="/viz"> <button type="button" class="btn btn-success btn-block"
-          style={{backgroundColor: 'blue',  borderColor: 'blue'}}> Show Viz!</button></a></button>
+          style={{backgroundColor: '#FF6666',  borderColor: '#FF6666'}}>
+          Show Viz!</button></a></button>
         </div>
       </div>
-    </div>
+
     </Router>
   );
 }}
 
 export default App;
+
