@@ -53,7 +53,8 @@ class BarChart extends Component{
           const yScale = d3.scaleLinear()
               .domain([0, d3.max(sorted_snitches_top, d => d[1])])
               .range([height, 0]);
-          const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+          const colorScale = d3.scaleSequential().domain([2,11])
+              .interpolator(d3.interpolateViridis );
 
           chart.selectAll('.bar')
               .data(sorted_snitches_top)
@@ -64,7 +65,7 @@ class BarChart extends Component{
               .attr('y', d => yScale(d[1]))
               .attr('height', d => (height - yScale(d[1])))
               .attr('width', d => xScale.bandwidth())
-              .style('fill', (d, i) => colorScale(i));
+              .style('fill', (d, i) => colorScale(i + 2));
 
           chart.selectAll('.bar-label')
               .data(sorted_snitches_top)
