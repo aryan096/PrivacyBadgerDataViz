@@ -17,9 +17,9 @@ class Viz extends Component{
       var websites = data['snitch_map'][tracker];
       for (var i = 0; i < websites.length; i++) {
         if (websites[i] in snitches){
-          snitches[websites[i]] += 1
+          snitches[websites[i]] += tracker
         } else {
-          snitches[websites[i]] = 1;
+          snitches[websites[i]] = [tracker];
         }
       }
     }
@@ -31,12 +31,11 @@ class Viz extends Component{
 
     // Sort the array based on the second element
     items.sort(function(first, second) {
-      return second[1] - first[1];
+      return second[1].length - first[1].length;
     });
 
     // Create a new array with only the first top_num items
     var sorted_snitches_top = items.slice(0, top_num)
-
     return sorted_snitches_top;
   }
 
@@ -54,8 +53,10 @@ class Viz extends Component{
   
 render(){
 
-  const v = this.get_top_trackers()
-  console.log(v)
+  // This will return the top websites with an array of trackers for each 
+  const tracker_list = this.get_top_trackers()
+  
+  console.log(tracker_list)
     return (
 
       <div className="container" style={{ width: "600px" }}>
@@ -64,9 +65,9 @@ render(){
         <h4>This is our breakdown of your data! </h4>
         <p>Your top 10 trackers are: </p>
         <div><BarChart /></div>
-        <ul> Num : Name {v.map(datas =>
+        <ul> Num : Name {tracker_list.map(datas =>
           (<li> <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-          type="button">{datas[1]} : {datas[0]}</button></li>))}</ul>
+          type="button">{datas[0]}</button></li>))}</ul>
       </div>
       </div>
 
