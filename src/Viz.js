@@ -17,7 +17,7 @@ class Viz extends Component{
       var websites = data['snitch_map'][tracker];
       for (var i = 0; i < websites.length; i++) {
         if (websites[i] in snitches){
-          snitches[websites[i]] += tracker
+          snitches[websites[i]].push(tracker)
         } else {
           snitches[websites[i]] = [tracker];
         }
