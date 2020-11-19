@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-
-
+import "./App.css";
+import * as d3 from 'd3';
+import  BarChart from './BarChart';
 
 var data = require('./data/data.json');
-const social = data.snitch_map;
 
 class Viz extends Component{
 
