@@ -48,41 +48,29 @@ class Viz extends Component{
     return total_num;
   }
  
+  onClick(){
 
-
-  Vizu() {
-
-    // TODO: Things get fucked if there isn't already a data.json file in the data folder. FIX THIS
-    // get an array of top tracking websites with the number of trackers that were snitching to that website
-    try {
-      var sorted_snitches_top = this.get_top_trackers();
-    } catch(err){
-      console.log(err)
-    }
-    console.log(sorted_snitches_top)
   }
-
-    // TODO: Function to get the names of the trackers for these top websites
-
-    // TODO: Function to get total number of blocked trackers
-
-    // TODO: Function to get total number of allowed trackers
-
-
+  
 render(){
+
   const v = this.get_top_trackers()
-  console.log(this.get_total_num_trackers())
+  console.log(v)
     return (
+
       <div className="container" style={{ width: "600px" }}>
         <div className="my-3">
-        <h1> Vizualization {this.Vizu()}</h1>
+        <h1> Vizualization</h1>
         <h4>This is our breakdown of your data! </h4>
-        <ul>{v.map(datas => (<li> {datas[1]}-{datas[0]}</li>))}</ul>
+        <p>Your top 10 trackers are: </p>
+        <div><BarChart /></div>
+        <ul> Num : Name {v.map(datas =>
+          (<li> <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+          type="button">{datas[1]} : {datas[0]}</button></li>))}</ul>
       </div>
       </div>
 
     );
 }
 }
-
 export default Viz;
