@@ -46,9 +46,11 @@ class App extends Component{
 
       <Router>
       <div className="App-header">
-    <div className="container" style={{ width: "700px" }}>
+    <div className="container" style={{width: 600}}>
         <h1>Data Privacy</h1>
-          <p> Welcome! Have you ever felt that the internet knows too much about you?
+          <p> Welcome!
+          <p></p>
+          Have you ever felt that the internet knows too much about you?
           Or have you felt ads that have just been too invasive? We are here to help you
           learn what the internet knows about you!
           Upload your tracking data from Privacy Badger and we will find the answers
@@ -57,33 +59,33 @@ class App extends Component{
           <div className="Upload">
         <h4>Choose file to upload</h4>
 
-        <div className="container" style={{ width: "600px" }}>
-    	<div class="row">
-    	  <div class="col-md-6">
-    	      <form method="post" action="#" id="#">
-              <div class="form-group files">
-              <input type="file" name="file" onChange={this.onChangeHandler}/>
+        <div className="container">
+      	<div class="row">
+      	  <div class="col-md-6">
+      	      <form method="post" action="#" id="#">
+                <div class="form-group files">
+                <input type="file" name="file" onChange={this.onChangeHandler}/>
+                </div>
+              </form>
               </div>
-            </form>
             </div>
+            </div>
+                </div>
+            <button disabled={this.state.isDisabled} type="button"
+            style={{backgroundColor: '#CCFF99', color: 'black', height: 50, borderColor: '#CCFF99'}}
+            class="btn btn-success btn-block" onClick={this.onClickHandler}>
+            {this.state.msg} </button>
+            <button type="button" class="btn btn-success btn-block"
+            style={{backgroundColor: '#FF6666', borderColor: '#FF6666'}}>
+            <a href="/viz" style={{textDecoration: 'none'}}>
+            <button type="button" class="btn btn-success btn-block"
+            style={{backgroundColor: '#FF6666',  borderColor: '#FF6666'}}>
+            Show Viz!</button></a></button>
           </div>
-          </div>
-              </div>
-          <button disabled={this.state.isDisabled} type="button"
-          style={{backgroundColor: '#CCFF99', color: 'black', height: 50, borderColor: '#CCFF99'}}
-          class="btn btn-success btn-block" onClick={this.onClickHandler}>
-          {this.state.msg} </button>
-          <button type="button" class="btn btn-success btn-block"
-          style={{backgroundColor: '#FF6666', borderColor: '#FF6666'}}>
-          <a href="/viz"> <button type="button" class="btn btn-success btn-block"
-          style={{backgroundColor: '#FF6666',  borderColor: '#FF6666'}}>
-          Show Viz!</button></a></button>
         </div>
-      </div>
 
     </Router>
   );
 }}
 
 export default App;
-
