@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import "./App.css";
 import * as d3 from 'd3';
 import { Element } from 'react-faux-dom';
+
 //import data from './data';
 //var data = require('./data/data.json');
 var sorted_snitches_top = []
@@ -49,12 +50,17 @@ class BarChart extends Component{
           // create scales!
           const xScale = d3.scaleBand()
               .domain(sorted_snitches_top.map(d => d[0]))
-              .range([0, width]);
+              .range([0, width])
+              .padding(.02);
           const yScale = d3.scaleLinear()
               .domain([0, d3.max(sorted_snitches_top, d => d[1])])
-              .range([height, 0]);
+              .range([height, 0])
           const colorScale = d3.scaleSequential().domain([2,11])
               .interpolator(d3.interpolateViridis );
+
+          const div = d3.select("body").append("div")
+              .attr("class", "tooltip")
+              .style("opacity", 0);
 
           chart.selectAll('.bar')
               .data(sorted_snitches_top)
@@ -65,7 +71,23 @@ class BarChart extends Component{
               .attr('y', d => yScale(d[1]))
               .attr('height', d => (height - yScale(d[1])))
               .attr('width', d => xScale.bandwidth())
-              .style('fill', (d, i) => colorScale(i + 2));
+                  .style('fill', (d, i) => colorScale(i + 2))
+              .on('mouseover', function (d, i) {
+                d3.select(this).transition()
+                   .duration('50')
+                   .attr('opacity', '.85');
+               div.transition()
+                   .duration(200)
+                   .style("opacity", .9);
+                 })
+               .on('mouseout', function (d, i) {
+                   d3.select(this).transition()
+                     .duration('50')
+                     .attr('opacity', '1');
+                   div.transition()
+                     .duration('200')
+                     .style("opacity", 0);
+              });
 
           chart.selectAll('.bar-label')
               .data(sorted_snitches_top)
@@ -79,6 +101,7 @@ class BarChart extends Component{
               .text(d => d[1]);
 
           const xAxis = d3.axisBottom()
+              .tickPadding(6)
               .scale(xScale);
 
           chart.append('g')
@@ -140,7 +163,7 @@ class BarChart extends Component{
               top: 60,
               bottom: 100,
               left: 80,
-              right: 40
+              right: 40,
           };
 
           const chart = svg.append('g')
@@ -156,7 +179,14 @@ class BarChart extends Component{
 
       render() {
         this.get_top_trackers()
-          return this.drawChart();
+        return (
+          <div>
+
+           {this.drawChart()}
+
+           </div>
+
+        );
       }
   }
 
