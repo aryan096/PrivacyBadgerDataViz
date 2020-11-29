@@ -3,75 +3,123 @@ import "./App.css";
 import * as d3 from 'd3';
 import  BarChart from './BarChart';
 
+
 var data = require('./data/data.json');
 
 class Viz extends Component{
+  constructor() {
+    super();
 
-  get_top_trackers() {
-    var snitches = {};
-
-    // Variable for Top __ websites with trackers on different websites
-    var top_num = 10
-
-    for (let tracker in data['snitch_map']) {
-      var websites = data['snitch_map'][tracker];
-      for (var i = 0; i < websites.length; i++) {
-        if (websites[i] in snitches){
-          snitches[websites[i]].push(tracker)
-        } else {
-          snitches[websites[i]] = [tracker];
-        }
+      this.state = {
+        showMenu: false,
       }
+      this.closeMenu = this.closeMenu.bind(this);
+      this.showMenu = this.showMenu.bind(this);
     }
 
-    // Create items array
-    var items = Object.keys(snitches).map(function(key) {
-      return [key, snitches[key]];
-    });
+    showMenu(event) {
+      event.preventDefault();
 
-    // Sort the array based on the second element
-    items.sort(function(first, second) {
-      return second[1].length - first[1].length;
-    });
+      this.setState({ showMenu: true }, () => {
+        document.addEventListener('click', this.closeMenu);
+      });
+    }
 
-    // Create a new array with only the first top_num items
-    var sorted_snitches_top = items.slice(0, top_num)
-    return sorted_snitches_top;
+    closeMenu() {
+
+       this.setState({ showMenu: false }, () => {
+         document.removeEventListener('click', this.closeMenu);
+       });
+
+     }
+
+
+  get_top_trackers() {
+
+  var snitches = {};
+
+  // Variable for Top __ websites with trackers on different websites
+  var top_num = 10
+
+  for (let tracker in data['snitch_map']) {
+    var websites = data['snitch_map'][tracker];
+    for (var i = 0; i < websites.length; i++) {
+      if (websites[i] in snitches){
+        snitches[websites[i]].push(tracker)
+      } else {
+        snitches[websites[i]] = [tracker];
+      }
+    }
   }
 
-  get_total_num_trackers() { 
-    // This function returns the total number of trackers based on the info stored in the snitch_map
-    // each key in the snitch map refers to the top level domain of a tracker
+  // Create items array
+  var items = Object.keys(snitches).map(function(key) {
+    return [key, snitches[key]];
+  });
 
-    var total_num = (Object.keys(data['snitch_map']).length);
-    return total_num;
-  }
- 
-  onClick(){
+  // Sort the array based on the second element
+  items.sort(function(first, second) {
+    return second[1].length - first[1].length;
+  });
 
-  }
-  
+  // Create a new array with only the first top_num items
+  var sorted_snitches_top = items.slice(0, top_num)
+
+  return sorted_snitches_top;
+}
+
+get_total_num_trackers() {
+  // This function returns the total number of trackers based on the info stored in the snitch_map
+  // each key in the snitch map refers to the top level domain of a tracker
+
+  var total_num = (Object.keys(data['snitch_map']).length);
+  return total_num;
+}
+
+    // TODO: Function to get the names of the trackers for these top websites
+
+    // TODO: Function to get total number of blocked trackers
+
+    // TODO: Function to get total number of allowed trackers
+
+
 render(){
 
-  // This will return the top websites with an array of trackers for each 
   const tracker_list = this.get_top_trackers()
-  
-  console.log(tracker_list)
+  console.log(tracker_list, " hi")
+
     return (
 
-      <div className="container" style={{ width: "600px" }}>
+      <div className="container" style={{ width: "750px"}}>
         <div className="my-3">
         <h1> Vizualization</h1>
         <h4>This is our breakdown of your data! </h4>
+        <h4 style={{color: "red"}}>
+          We found a total of {this.get_total_num_trackers()} trackers tracking you.
+        </h4>
         <p>Your top 10 trackers are: </p>
         <div><BarChart /></div>
-        <ul> Num : Name {tracker_list.map(datas =>
-          (<li> <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-          type="button">{datas[0]}</button></li>))}</ul>
+        <ul><h4 style={{marginTop: 20}}> Trackers Breakdown</h4>
+        {tracker_list.map(datas =>
+            (<li>
+              <button class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown"
+                type="button" style={{fontWeight: 600}}
+                onClick={this.showMenu}>
+                {datas[0]}
+              </button>
+              {this.state.showMenu ? (
+              <ul><li>{datas[1].map(line =>
+              (<li style={{listStyle: 'circle'}}>{line}</li>))}</li></ul>)
+              : ( null )}
+            </li>))}
+            </ul>
       </div>
       </div>
 
     );
-} 
 }
+}
+
 export default Viz;
+
