@@ -118,7 +118,7 @@ render(){
       </div>
 
     );
-}
+} 
 }
 
 export default Viz;
