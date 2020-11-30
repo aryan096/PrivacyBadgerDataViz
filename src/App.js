@@ -46,15 +46,17 @@ class App extends Component{
 
       <Router>
       <div className="App-header">
-    <div className="container" style={{width: 600}}>
-        <h1>Data Privacy</h1>
-          <p> Welcome!
+    <div className="container" style={{width: 800}}>
+        <h1>Visualizing trackers using Privacy Badger</h1>
+        <br></br>
+          <p>
+          Welcome!
           <p></p>
           Have you ever felt that the internet knows too much about you?
           Or have you felt ads that have just been too invasive? We are here to help you
           learn what the internet knows about you!
-          Upload your tracking data from Privacy Badger and we will find the answers
-          you're looking for.
+          Upload your tracking data downloaded from this <a href="https://github.com/aryan096/privacybadger">modified Privacy Badger extension</a> that accurately
+          captures information about trackers while you browse and we will help you understand!
           </p>
           <div className="Upload">
         <h4>Choose file to upload</h4>
@@ -79,7 +81,7 @@ class App extends Component{
             style={{backgroundColor: '#FF6666', borderColor: '#FF6666'}}>
             <a href="/viz" style={{textDecoration: 'none'}}>
             <button type="button" class="btn btn-success btn-block"
-            style={{backgroundColor: '#FF6666',  borderColor: '#FF6666'}}>
+            style={{backgroundColor: '#FF6666', borderColor: '#FF6666'}}>
             Show Viz!</button></a></button>
           </div>
         </div>

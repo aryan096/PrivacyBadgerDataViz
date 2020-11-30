@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import "./App.css";
 import * as d3 from 'd3';
+import Alert from 'react-bootstrap/Alert'
 import  BarChart from './BarChart';
 
 
@@ -90,16 +91,25 @@ render(){
 
     return (
 
-      <div className="container" style={{ width: "750px"}}>
+      <div className="container viz-container" style={{ width: "750px"}}>
         <div className="my-3">
-        <h1> Vizualization</h1>
-        <h4>This is our breakdown of your data! </h4>
-        <h4 style={{color: "red"}}>
-          We found a total of {this.get_total_num_trackers()} trackers tracking you.
-        </h4>
-        <p>Your top 10 trackers are: </p>
+        <h1>Let's breakdown your data!</h1><hr></hr><br></br>
+        <Alert variant='danger'>
+        We found a total of <b>{this.get_total_num_trackers()} trackers</b> throughout your browsing data.<br></br>
+        Each tracker comes from a different top-level-domain.
+        </Alert>
+        <p>You probably have A LOT of trackers peeping your activity. We will first focus on the websites that track you the most.
+
+        <br></br><br></br>
+
+        The top 10 websites based on the number of trackers they had - </p>
         <div><BarChart /></div>
-        <ul><h4 style={{marginTop: 20}}> Trackers Breakdown</h4>
+
+        <br></br><br></br>
+
+        <p>Next, it might be useful to look at the list of trackers for each of these top tracking websites.</p>
+        <h4 style={{marginTop: 20}}>What trackers were on these websites?</h4>
+        <ul>
         {tracker_list.map(datas =>
             (<li>
               <button class="btn btn-default dropdown-toggle"
@@ -113,13 +123,21 @@ render(){
               (<li style={{listStyle: 'circle'}}>{line}</li>))}</li></ul>)
               : ( null )}
             </li>))}
-            </ul>
+          </ul>
+
+          <br></br>
+          <hr></hr>
+          <br></br>
+          <p>
+          Something more interesting to look at is how these trackers look at you across
+          websites. You can imagine how easy it would be to build a profile on you based on your
+          browsing activity that a tracker might gather.
+          </p>
       </div>
       </div>
 
     );
-} 
+}
 }
 
 export default Viz;
-
