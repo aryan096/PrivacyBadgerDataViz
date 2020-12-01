@@ -72,7 +72,6 @@ class Viz extends Component{
 get_total_num_trackers() {
   // This function returns the total number of trackers based on the info stored in the snitch_map
   // each key in the snitch map refers to the top level domain of a tracker
-
   var total_num = (Object.keys(data['snitch_map']).length);
   return total_num;
 }
@@ -110,8 +109,6 @@ render(){
         <p>Next, it might be useful to look at the list of trackers for each of these top tracking websites.</p>
         <h4 style={{marginTop: 20}}>What trackers were on these websites?</h4>
 
-
-<Bubble/>
         <ul>
         {tracker_list.map(datas =>
             (<li>
@@ -136,6 +133,8 @@ render(){
           websites. You can imagine how easy it would be to build a profile on you based on your
           browsing activity that a tracker might gather.
           </p>
+
+          <Bubble/>
       </div>
       </div>
 
