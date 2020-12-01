@@ -69,7 +69,7 @@ class Bubble extends Component {
           ]}
         />
         </div>
-    );
+    ); 
   }
 }
 
