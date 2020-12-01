@@ -20,6 +20,13 @@ class Bubble extends Component {
   	});
   	return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
   }
+  // colors for our color scheme
+  getRandomColor(){
+    let colorValues = ["#44015452", "#440154b0", "#74add4a3",
+    "#3e4989", "#31688e", "#26828e", "#1f9e89", "#35b779", "#6ece58",
+    "#b5de2b", "#fde725cf", "#fd9d25", "#25cbfd", "#e0793cb8"];
+  return colorValues[Math.floor(Math.random() * colorValues.length)];
+  }
 
   get_top_10_trackers(){
     var snitch_map = data['snitch_map']; // get snitch_map
@@ -31,9 +38,9 @@ class Bubble extends Component {
     }
     snitch_map = this.sort_trackers(snitch_map);
 
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 14; i++){
       if(snitch_map[i]){
-        let new_entry = {label:snitch_map[i][0], value:snitch_map[i][1]};
+        let new_entry = {label:snitch_map[i][0], value:snitch_map[i][1], color: this.getRandomColor()};
         output_list.push(new_entry);
       } else {
         break;
@@ -59,9 +66,9 @@ class Bubble extends Component {
       <div class="tracker_bubbles">
       <BubbleChart
         graph= {{
-          zoom: 0.98,
-          offsetX: 0.0,
-          offsetY: -0.11,
+          zoom: 0.80,
+          offsetX: 0.05,
+          offsetY: -0.01,
           }}
           width={800}
           height={700}
