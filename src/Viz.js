@@ -3,7 +3,7 @@ import "./App.css";
 import * as d3 from 'd3';
 import Alert from 'react-bootstrap/Alert'
 import  BarChart from './BarChart';
-
+import  Bubble from './Bubble';
 
 var data = require('./data/data.json');
 
@@ -109,6 +109,9 @@ render(){
 
         <p>Next, it might be useful to look at the list of trackers for each of these top tracking websites.</p>
         <h4 style={{marginTop: 20}}>What trackers were on these websites?</h4>
+
+
+<Bubble/>
         <ul>
         {tracker_list.map(datas =>
             (<li>
