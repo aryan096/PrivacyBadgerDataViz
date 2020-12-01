@@ -1,3 +1,25 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), url(./fonts/Montserrat/Montserrat-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Source_Sans_Pro';
+  src: local('Source_Sans_Pro'), url(./fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf) format('truetype');
+}
+
+.header{
+  font-family: Montserrat, serif;
+}
+.viz-page {
+  font-family: Source_Sans_Pro, serif;
+  font-size: larger;
+}
+
+.site_title {
+  font-family: Montserrat, serif;
+}
+
 .tracker_bubbles{
   margin-top: 60px;
 }
@@ -32,11 +54,12 @@
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
+  font-family: Source_Sans_Pro, serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(6px + 2vmin);
   color: white;
 }
 

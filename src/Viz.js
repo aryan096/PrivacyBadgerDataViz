@@ -91,12 +91,14 @@ render(){
     return (
 
       <div className="container viz-container" style={{ width: "750px"}}>
-        <div className="my-3">
-        <h1>Let's breakdown your data!</h1><hr></hr><br></br>
+        <div className="viz-page">
+        <h1 class="header">Let's breakdown your data!</h1><hr></hr><br></br>
         <Alert variant='danger'>
         We found a total of <b>{this.get_total_num_trackers()} trackers</b> throughout your browsing data.<br></br>
         Each tracker comes from a different top-level-domain.
         </Alert>
+        <br></br>
+        <h4 class="header" style={{marginBottom: 20}}>What websites track you the most?</h4>
         <p>You probably have A LOT of trackers peeping your activity. We will first focus on the websites that track you the most.
 
         <br></br><br></br>
@@ -107,7 +109,7 @@ render(){
         <br></br><br></br>
 
         <p>Next, it might be useful to look at the list of trackers for each of these top tracking websites.</p>
-        <h4 style={{marginTop: 20}}>What trackers were on these websites?</h4>
+        <h4 class="header" style={{marginBottom: 20}}>What trackers were on these websites?</h4>
 
         <ul>
         {tracker_list.map(datas =>
@@ -128,10 +130,12 @@ render(){
           <br></br>
           <hr></hr>
           <br></br>
+          <h4 class="header" style={{marginBottom: 20}}>Which trackers were most prevalent?</h4>
           <p>
-          Something more interesting to look at is how these trackers look at you across
-          websites. You can imagine how easy it would be to build a profile on you based on your
-          browsing activity that a tracker might gather.
+          What about the prevalence of trackers? Which ones appear most in your browsing?
+          The following bubble chart shows the top 10 trackers based on their prevalence in
+          your browsing. Clicking the bubbles will take you to the website of these trackers
+          where you can find more information.
           </p>
 
           <Bubble/>

@@ -70,19 +70,19 @@ class Bubble extends Component {
           legendPercentage={20} // number that represent the % of with that legend going to use.
           legendFont={{
             family: 'Arial',
-            size: 10,
+            size: 12,
             color: '#000',
             weight: 'bold',
           }}
           valueFont={{
             family: 'Arial',
-            size: 10,
+            size: 18,
             color: '#fff',
             weight: 'bold',
           }}
           labelFont={{
             family: 'Arial',
-            size: 10,
+            size: 12,
             color: '#fff',
             weight: 'bold',
           }}
