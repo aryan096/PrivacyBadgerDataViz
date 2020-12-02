@@ -69,8 +69,7 @@ class Bubble extends Component {
   }
 
   render(){
-    var output = this.get_top_10_trackers();
-    console.log(output)
+    var trackers = this.get_top_10_trackers();
     return(
       <div class="tracker_bubbles">
       <BubbleChart
@@ -104,7 +103,7 @@ class Bubble extends Component {
           }}
           //Custom bubble/legend click functions such as searching using the label, redirecting to other page
           bubbleClickFun={this.bubbleClick}
-          data={output}
+          data={trackers}
         />
         </div>
     );
