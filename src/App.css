@@ -24,6 +24,10 @@
   margin-top: 60px;
 }
 
+.alert-info{
+  font-size: 16px !important;
+}
+
 .viz-container {
   margin-top: 30px;
 }

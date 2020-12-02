@@ -4,6 +4,7 @@ import "./App.css";
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 
 var data = require('./data/data.json');
+var optout = require('./optoutlinks.js')
 
 class Bubble extends Component {
 
@@ -51,13 +52,21 @@ class Bubble extends Component {
   }
 
   bubbleClick(label){
+    // This function is executed whenever a bubble is clicked. It looks through
+    // our optoutlink database and opens it if it exists. Otherwise, it just
+    // opens the label domain
     console.log(label, ' bubble was clicked...')
-    window.open('https://' + label, '_blank');
-  }
-  legendClick(label){
-  console.log("Customer legend click func")
-  }
+    var optoutlinks = optout['default'];
 
+    for (let mapping in optoutlinks){
+      if (optoutlinks[mapping]['Name'] == label){
+        window.open(optoutlinks[mapping]['Link']);
+        return 0;
+      }
+    }
+    window.open('https://' + label, '_blank');
+    return 0;
+  }
 
   render(){
     var output = this.get_top_10_trackers();
@@ -95,7 +104,6 @@ class Bubble extends Component {
           }}
           //Custom bubble/legend click functions such as searching using the label, redirecting to other page
           bubbleClickFun={this.bubbleClick}
-          legendClickFun={this.legendClick}
           data={output}
         />
         </div>

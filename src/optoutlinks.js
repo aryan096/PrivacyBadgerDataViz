@@ -1,4 +1,4 @@
-const trackerList = [
+const optoutlinks = [
   {"Name":"doubleclick.net",
   "Link":"https://googleads.g.doubleclick.net/ads/preferences"},
   {"Name":"Google.com",
@@ -41,4 +41,4 @@ const trackerList = [
 
 ];
 
-export default trackerList;
+export default optoutlinks;

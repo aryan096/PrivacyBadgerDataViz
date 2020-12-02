@@ -66,6 +66,9 @@ class Viz extends Component{
           your browsing. Clicking the bubbles will take you to the website of these trackers
           where you can find more information.
           </p>
+          <Alert class="bubble_alert" variant={'info'}>
+            Clicking a bubble will take you to the opt-out page of that tracker! (if it exists in our database)
+          </Alert>
         <div><Bubble/></div>
       </div>
       </div>
