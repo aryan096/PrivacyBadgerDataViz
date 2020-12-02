@@ -48,6 +48,7 @@ class BarChart extends Component{
   plot(chart, width, height) {
       console.log(sorted_snitches_top)
           // create scales!
+
           const xScale = d3.scaleBand()
               .domain(sorted_snitches_top.map(d => d[0]))
               .range([0, width])
@@ -60,7 +61,7 @@ class BarChart extends Component{
 
           const div = d3.select("body").append("div")
               .attr("class", "tooltip")
-              .style("opacity", 0);
+              .style("opacity", 0)
 
           chart.selectAll('.bar')
               .data(sorted_snitches_top)
@@ -71,23 +72,7 @@ class BarChart extends Component{
               .attr('y', d => yScale(d[1]))
               .attr('height', d => (height - yScale(d[1])))
               .attr('width', d => xScale.bandwidth())
-                  .style('fill', (d, i) => colorScale(i + 2))
-              .on('mouseover', function (d, i) {
-                d3.select(this).transition()
-                   .duration('50')
-                   .attr('opacity', '.85');
-               div.transition()
-                   .duration(200)
-                   .style("opacity", .9);
-                 })
-               .on('mouseout', function (d, i) {
-                   d3.select(this).transition()
-                     .duration('50')
-                     .attr('opacity', '1');
-                   div.transition()
-                     .duration('200')
-                     .style("opacity", 0);
-              });
+              .style('fill', (d, i) => colorScale(i + 2))
 
           chart.selectAll('.bar-label')
               .data(sorted_snitches_top)
@@ -105,29 +90,34 @@ class BarChart extends Component{
               .scale(xScale);
 
           chart.append('g')
-              .classed('x axis', true)
+              .classed('x-axis', true)
               .attr('transform', `translate(0,${height})`)
-              .call(xAxis);
+              .call(xAxis)
+              .selectAll("text")
+              .attr("dx", "4.1em")
+              .attr("dy", "1em")
+              .attr("transform", "rotate(45)" );
 
           const yAxis = d3.axisLeft()
               .ticks(5)
               .scale(yScale);
 
           chart.append('g')
-              .classed('y axis', true)
+              .classed('y-axis', true)
               .attr('transform', 'translate(0,0)')
               .call(yAxis);
 
-          chart.select('.x.axis')
+          chart.select('.x-axis')
               .append('text')
               .attr('x',  width/2)
-              .attr('y', 60)
+              .attr('y', 100)
               .attr('fill', '#000')
               .style('font-size', '20px')
               .style('text-anchor', 'middle')
+              .style('margin-top', '30px')
               .text('Company');
 
-          chart.select('.y.axis')
+          chart.select('.y-axis')
               .append('text')
               .attr('x', 0)
               .attr('y', 0)
@@ -150,25 +140,39 @@ class BarChart extends Component{
 
       drawChart() {
           const width = 800;
-          const height = 450;
+          const height = 500;
 
           const el = new Element('div');
           const svg = d3.select(el)
               .append('svg')
               .attr('id', 'chart')
               .attr('width', width)
-              .attr('height', height);
+              .attr('height', height)
+              .on('mouseover',function(d, i){
+                console.log("hello")
+                d3.select(this)
+                  .transition()
+                  .duration(100)
+                  .attr('fill', 'orange');
+              })
+              .on('mouseout',function(d,i){
+                d3.select(this)
+                    .transition()
+                    .duration(500)
+                    .attr('fill', 'blue');
+              });
 
           const margin = {
               top: 60,
-              bottom: 100,
+              bottom: 120,
               left: 80,
               right: 40,
           };
 
           const chart = svg.append('g')
               .classed('display', true)
-              .attr('transform', `translate(${margin.left},${margin.top})`);
+              .attr('transform', `translate(${margin.left},${margin.top})`)
+
 
           const chartWidth = width - margin.left - margin.right;
           const chartHeight = height - margin.top - margin.bottom
