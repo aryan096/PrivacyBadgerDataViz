@@ -46,6 +46,7 @@ class BarChart extends Component{
 
 
   plot(chart, width, height) {
+      console.log(sorted_snitches_top)
           // create scales!
 
           const xScale = d3.scaleBand()
@@ -90,12 +91,14 @@ class BarChart extends Component{
 
           chart.append('g')
               .classed('x-axis', true)
-              .attr('transform', `translate(0,${height})`)
+              .attr('transform', `translate(0,${height })`)
               .call(xAxis)
               .selectAll("text")
-              .attr("dx", "4.1em")
-              .attr("dy", "1em")
-              .attr("transform", "rotate(45)" );
+              .attr("dx", "4.0em")
+              .attr("dy", "0.9em")
+              .attr("transform", "rotate(45)" )
+              .style('font-size', '11px')
+              .style('margin-top', '10px');;
 
           const yAxis = d3.axisLeft()
               .ticks(5)
@@ -109,11 +112,12 @@ class BarChart extends Component{
           chart.select('.x-axis')
               .append('text')
               .attr('x',  width/2)
-              .attr('y', 100)
+              .attr('y', 140)
               .attr('fill', '#000')
               .style('font-size', '20px')
               .style('text-anchor', 'middle')
-              .style('margin-top', '30px')
+              .style('margin-top', '60px')
+              .style('padding', '10px')
               .text('Company');
 
           chart.select('.y-axis')
@@ -138,8 +142,8 @@ class BarChart extends Component{
       }
 
       drawChart() {
-          const width = 750;
-          const height = 550;
+          const width = 800;
+          const height = 500;
 
           const el = new Element('div');
           const svg = d3.select(el)
@@ -148,6 +152,7 @@ class BarChart extends Component{
               .attr('width', width)
               .attr('height', height)
               .on('mouseover',function(d, i){
+                console.log("hello")
                 d3.select(this)
                   .transition()
                   .duration(100)
@@ -158,13 +163,11 @@ class BarChart extends Component{
                     .transition()
                     .duration(500)
                     .attr('fill', 'blue');
-              })
-              .on('click', function() {
               });
 
           const margin = {
               top: 60,
-              bottom: 120,
+              bottom: 160,
               left: 80,
               right: 40,
           };
@@ -188,7 +191,7 @@ class BarChart extends Component{
 
            {this.drawChart()}
 
-          </div>
+           </div>
 
         );
       }
