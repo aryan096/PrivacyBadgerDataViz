@@ -19,11 +19,18 @@
   width: -webkit-fill-available;
 }
 .tracker-list{
-  text-align: center;
-  overflow:scroll;
+  margin-left: 100px;
+  margin-top: 20px;
   overflow-y:scroll;
   max-height: 23em;
   width:100%;
+  background-color: #adefd14f;
+  border-radius: 7px;
+  color: #00203FFF;
+}
+.tab-content>.active {
+    display: block;
+    margin-right: 100px !important;
 }
 
 .header{
@@ -50,6 +57,10 @@
   margin-top: 30px;
 }
 
+.nav-link{
+  color: black;
+}
+
 .App {
   text-align: center;
 }
@@ -72,7 +83,28 @@
   padding: 20px;
   margin-bottom: 20px
 }
+.nav-pills .nav-link:active{
+  background-color: #ADEFD1FF !important;
+}
+.show>.nav-link{
+  background-color: red;
+}
 
+.text-for-tabs{
+  margin-left: 140px;
+}
+.header-tab{
+  font-weight: bold !important;
+  font-size: larger !important;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background-color: #00203FFF !important;
+  color: white !important;
+}
+
+a{
+  color: black !important;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -138,6 +170,13 @@ li{
 	text-anchor: middle;
 	font-size: 18px;
   padding: 10px;
+}
+
+.label-text{
+  opacity: 1 !important;
+}
+.value-text{
+  margin-bottom: 10px !important;
 }
 
 .axis path,
