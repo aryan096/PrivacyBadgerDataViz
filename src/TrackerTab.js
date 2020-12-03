@@ -60,11 +60,11 @@ class TrackerTab extends Component{
             <Col sm={3}>
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
-                  <Nav.Link eventKey="first">Website</Nav.Link>
+                  <Nav.Link variant="primary" className="header-tab" eventKey="first">Website</Nav.Link>
                 </Nav.Item>
                 {trackers_list.map(datas =>
                   <Nav.Item>
-                    <Nav.Link eventKey={datas[0]}>{datas[0]}</Nav.Link>
+                    <Nav.Link variant="primary" eventKey={datas[0]}>{datas[0]}</Nav.Link>
                   </Nav.Item>
                 )}
               </Nav>
@@ -72,16 +72,16 @@ class TrackerTab extends Component{
             <Col sm={8}>
               <Tab.Content>
                 <Tab.Pane eventKey="first">
-                  <p> Click on a tab to view a scrollable list of the trackers on that website!
+                  <p className="text-for-tabs"> Click on a tab to view a scrollable list of the trackers on that website!
                   </p>
                 </Tab.Pane>
                 {trackers_list.map(datas =>
                   <Tab.Pane eventKey={datas[0]}>
-                    <ol class="tracker-list">
+                    <ul class="tracker-list">
                       {datas[1].map(tracker =>
-                        <li>{tracker}</li>
+                        <li style={{listStyle: 'circle', marginLeft: '4px', marginTop: '2px', marginBottom: '2px'}}>{tracker}</li>
                       )}
-                    </ol>
+                    </ul>
                   </Tab.Pane>
                 )}
               </Tab.Content>
