@@ -8,6 +8,24 @@
   src: local('Source_Sans_Pro'), url(./fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf) format('truetype');
 }
 
+
+.flex-container .row{
+  border: lightgray;
+  border-style: dotted;
+  border-width: thin;
+  padding: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  width: -webkit-fill-available;
+}
+.tracker-list{
+  text-align: center;
+  overflow:scroll;
+  overflow-y:scroll;
+  max-height: 23em;
+  width:100%;
+}
+
 .header{
   font-family: Montserrat, serif;
 }

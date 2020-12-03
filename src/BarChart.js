@@ -46,7 +46,6 @@ class BarChart extends Component{
 
 
   plot(chart, width, height) {
-      console.log(sorted_snitches_top)
           // create scales!
 
           const xScale = d3.scaleBand()
@@ -139,8 +138,8 @@ class BarChart extends Component{
       }
 
       drawChart() {
-          const width = 800;
-          const height = 500;
+          const width = 750;
+          const height = 550;
 
           const el = new Element('div');
           const svg = d3.select(el)
@@ -149,7 +148,6 @@ class BarChart extends Component{
               .attr('width', width)
               .attr('height', height)
               .on('mouseover',function(d, i){
-                console.log("hello")
                 d3.select(this)
                   .transition()
                   .duration(100)
@@ -160,6 +158,8 @@ class BarChart extends Component{
                     .transition()
                     .duration(500)
                     .attr('fill', 'blue');
+              })
+              .on('click', function() {
               });
 
           const margin = {
@@ -188,7 +188,7 @@ class BarChart extends Component{
 
            {this.drawChart()}
 
-           </div>
+          </div>
 
         );
       }
