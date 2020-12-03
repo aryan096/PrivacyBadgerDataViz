@@ -55,7 +55,7 @@ class App extends Component{
           Have you ever felt that the internet knows too much about you?
           Or have you felt ads that have just been too invasive? We are here to help you
           learn what the internet knows about you!
-          Upload your tracking data downloaded from this <a href="https://github.com/aryan096/privacybadger">modified Privacy Badger extension</a> that accurately
+          Upload your tracking data downloaded from this <a className="url" href="https://github.com/aryan096/privacybadger" >modified Privacy Badger extension</a> that accurately
           captures information about trackers while you browse and we will help you understand!
           </p>
           <br></br>
