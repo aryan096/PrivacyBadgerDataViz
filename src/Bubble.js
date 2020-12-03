@@ -79,9 +79,9 @@ class Bubble extends Component {
           offsetY: -0.01,
           }}
           width={800}
-          height={700}
+          height={500}
           padding={1} // optional value, number that set the padding between bubbles
-          showLegend={false} // optional value, pass false to disable the legend.
+          showLegend={true} // optional value, pass false to disable the legend.
           legendPercentage={20} // number that represent the % of with that legend going to use.
           legendFont={{
             family: 'Arial',
@@ -91,7 +91,7 @@ class Bubble extends Component {
           }}
           valueFont={{
             family: 'Arial',
-            size: 18,
+            size: 16,
             color: '#fff',
             weight: 'bold',
           }}
