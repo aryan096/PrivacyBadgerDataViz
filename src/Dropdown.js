@@ -3,7 +3,7 @@ import "./App.css";
 import * as d3 from 'd3';
 import Alert from 'react-bootstrap/Alert'
 import  BarChart from './BarChart';
-
+import onClickOutside from 'react-onclickoutside'
 
 
 var data = require('./data/data.json');
@@ -42,57 +42,98 @@ const get_top_trackers = () => {
 return sorted_snitches_top;
 }
 
+
+
+
 class Dropdown extends Component{
-  constructor() {
-    super();
+
+
+  getIndex(value) {
+      const tracker = get_top_trackers()
+      for(var i = 0; i < tracker.length; i++) {
+          if(tracker[i][0] === value) {
+              return i;
+          }
+      }
+  }
+
+  constructor(props) {
+    super(props);
 
       this.state = {
         showMenu: false,
+        index: -1,
       }
       this.closeMenu = this.closeMenu.bind(this);
       this.showMenu = this.showMenu.bind(this);
+      this.showIt = this.showIt.bind(this);
     }
 
-    showMenu(event) {
-      event.preventDefault();
+    handleClickOutside = (e) => {
+      console.log('onClickOutside() method called')
+    }
 
-      this.setState({ showMenu: true }, () => {
-        document.addEventListener('click', this.closeMenu);
+    showMenu(e) {
+      var value = e.target.textContent;
+      var index = this.getIndex(value)
+      console.log(index, "index");
+      this.setState({
+        showMenu: true,
+        index: index }, () => {
+        console.log("outside index", this.state.index)
+        console.log("REACHED");
+
       });
-    }
+      console.log(this.state);
+      console.log("outside index", index);
+
+      }
+
+      showIt(e){
+        const tracker = get_top_trackers()
+        const i = this.state.index
+        console.log("hihuhuhgu", this.state.index);
+        console.log("top trackers", tracker[this.state.index]);
+        return tracker[i][1].map(line => (
+           <ul className="element"><li style={{listStyle: 'circle'}}>{line}</li></ul>)
+        );
+
+      }
+
+
+      /*return (index.map(line =>
+      (<li style={{listStyle: 'circle'}}>{line}</li>)))*/
 
     closeMenu() {
-
        this.setState({ showMenu: false }, () => {
          document.removeEventListener('click', this.closeMenu);
        });
 
      }
-
+     /*{this.state.showMenu ? (
+     <ul><li>{datas[1].map(line =>
+     (<li style={{listStyle: 'circle'}}>{line}</li>))}</li></ul>)
+     : ( null )}*/
   render(){
     const tracker = get_top_trackers()
-    console.log(tracker, " hi")
-
     return (
-      <div>
+      <div className="flex-container">
       <ul>
-      {tracker.map(datas =>
+      <div className="tracker-list"> {tracker.map(datas =>
           (<li>
-            <button class="btn btn-default dropdown-toggle"
+            <button id="track" class="btn btn-default dropdown-toggle"
               data-toggle="dropdown"
               type="button" style={{fontWeight: 600}}
-              onClick={this.showMenu}>
+              onClick={(this.showMenu)}>
               {datas[0]}
             </button>
-            {this.state.showMenu ? (
-            <ul><li>{datas[1].map(line =>
-            (<li style={{listStyle: 'circle'}}>{line}</li>))}</li></ul>)
+            </li>))}</div> </ul>
+            {this.state.showMenu ? <div className="tracker-list">{this.showIt()}</div>
             : ( null )}
-          </li>))}
-        </ul>
+
         </div>
     );
   }
 }
 
-export default Dropdown;
+export default onClickOutside(Dropdown);
