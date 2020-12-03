@@ -135,7 +135,20 @@ li{
 	stroke: #ccc;
 	shape-rendering: crispEdges;
 }
+.tracker-list{
+  flex: 1;
+}
 
+.dropdown-toggle::after {
+transform: rotate(-90deg)
+}
+.flex-container{
+  display: flex;
+}
+.element{
+  margin-bottom: -2px;
+  font-size: 17px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
