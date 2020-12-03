@@ -92,6 +92,12 @@
 
 .text-for-tabs{
   margin-left: 140px;
+  background-color: #adefd14f;
+  padding: 12px;
+  border-radius: 7px;
+  margin-left: 40px;
+  margin-right: -100px;
+  color: #00203FFF;
 }
 .header-tab{
   font-weight: bold !important;
