@@ -5,9 +5,13 @@ This is the project layout:
 
 ### src:
 - App.js contains the "home" page content
-- viz.js is the vizualization page
+- viz.js is the vizualization page renderer
+- BarChart.js has the Bar chart Component
+- Bubble.js has the bubble viz Component
+- TrackerTab.js has the tracker list tab Component
 - Routes.js has the routes for home page and viz page
 - Index.js is component that renders the routes
+- fonts has the fonts we used for the project
 
 ### server.js:
 - Backend

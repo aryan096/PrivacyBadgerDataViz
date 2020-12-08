@@ -11,19 +11,13 @@ var data = require('./data/data.json');
 
 class Viz extends Component{
 
+  /* This function returns the total number of trackers based on the info stored in the snitch_map
+     each key in the snitch map refers to the top level domain of a tracker
+  */
   get_total_num_trackers() {
-    // This function returns the total number of trackers based on the info stored in the snitch_map
-    // each key in the snitch map refers to the top level domain of a tracker
     var total_num = (Object.keys(data['snitch_map']).length);
     return total_num;
   }
-
-    // TODO: Function to get the names of the trackers for these top websites
-
-    // TODO: Function to get total number of blocked trackers
-
-    // TODO: Function to get total number of allowed trackers
-
 
   render(){
     return (
@@ -31,13 +25,18 @@ class Viz extends Component{
         <div className="viz-page">
           <h1 class="header">
           <a href="/" style={{textDecoration: 'none'}}>
-          <button type="button" className="btn"
-          style={{backgroundColor: '#00203FFF', borderColor: 'none', color: 'white'}}>
-          Click to go back </button></a>  <hr></hr> Let's breakdown your data!</h1><br></br>
+            <button type="button" className="btn"
+            style={{backgroundColor: '#00203FFF', borderColor: 'none', color: 'white'}}>
+            Click to go back </button>
+          </a>
+
+          <hr></hr> Let's breakdown your data!</h1><br></br>
+
           <Alert variant='danger'>
           We found a total of <b>{this.get_total_num_trackers()} trackers</b> throughout your browsing data.<br></br>
           Each tracker comes from a different top-level-domain.
           </Alert>
+
           <br></br>
           <h4 class="header" style={{marginBottom: 20}}>
           What websites track you the most?</h4>
@@ -52,11 +51,11 @@ class Viz extends Component{
           <br></br><br></br>
 
           <p>Next, it might be useful to look at the list of trackers for each
-        of these top tracking websites.</p>
+          of these top tracking websites.</p>
           <h4 class="header" style={{marginBottom: 20}}>
           What trackers were on these websites?</h4>
 
-           <div> <TrackerTab/> </div>
+          <div> <TrackerTab/> </div>
 
           <br></br>
           <hr></hr>

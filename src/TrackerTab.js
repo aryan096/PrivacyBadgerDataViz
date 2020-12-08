@@ -9,14 +9,19 @@ import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
 import Row from 'react-bootstrap/Row'
 
+// this imports the data file
 var data = require('./data/data.json');
 
- function get_top_trackers(get_number=true) {
+/*
+This function gets the top trackers from the data file uploaded by the user
+*/
+function get_top_trackers() {
 
   var snitches = {};
 
   // Variable for Top __ websites with trackers on different websites
   var top_num = 10
+  // populate the snitches dict from the snitch_map
   for (let tracker in data['snitch_map']) {
     var websites = data['snitch_map'][tracker];
     for (var i = 0; i < websites.length; i++) {
@@ -48,11 +53,11 @@ var data = require('./data/data.json');
 
 class TrackerTab extends Component{
 
+  // The render function first gets the top trackers then renders the HTML for
+  // the tracker tab component
   render(){
     var trackers_list = get_top_trackers()
-    for(let thing in trackers_list){
-      trackers_list.map(datas=>console.log(datas));
-    }
+
     return (
       <div className="flex-container">
         <Tab.Container id="tracker-tabs" defaultActiveKey="first">
@@ -74,7 +79,7 @@ class TrackerTab extends Component{
                 <Tab.Pane eventKey="first">
                   <p className="text-for-tabs"> Click on a tab to view a scrollable list of the trackers on that website!
                   </p>
-                </Tab.Pane> 
+                </Tab.Pane>
                 {trackers_list.map(datas =>
                   <Tab.Pane eventKey={datas[0]}>
                     <ul class="tracker-list">

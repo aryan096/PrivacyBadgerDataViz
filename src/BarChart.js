@@ -10,44 +10,46 @@ var data = require('./data/data.json');
 
 class BarChart extends Component{
 
+  /*
+  This function gets the top trackers from the data file uploaded by the user
+  */
   get_top_trackers() {
 
-  var snitches = {};
+    var snitches = {};
 
-  // Variable for Top __ websites with trackers on different websites
-  var top_num = 10
+    // Variable for Top __ websites with trackers on different websites
+    var top_num = 10
 
-  for (let tracker in data['snitch_map']) {
-    var websites = data['snitch_map'][tracker];
-    for (var i = 0; i < websites.length; i++) {
-      if (websites[i] in snitches){
-        snitches[websites[i]] += 1
-      } else {
-        snitches[websites[i]] = 1;
+    for (let tracker in data['snitch_map']) {
+      var websites = data['snitch_map'][tracker];
+      for (var i = 0; i < websites.length; i++) {
+        if (websites[i] in snitches){
+          snitches[websites[i]] += 1
+        } else {
+          snitches[websites[i]] = 1;
+        }
       }
     }
+
+    // Create items array
+    var items = Object.keys(snitches).map(function(key) {
+      return [key, snitches[key]];
+    });
+
+    // Sort the array based on the second element
+    items.sort(function(first, second) {
+      return second[1] - first[1];
+    });
+
+    // Create a new array with only the first top_num items
+    sorted_snitches_top = items.slice(0, top_num)
+
+    return sorted_snitches_top;
   }
 
-  // Create items array
-  var items = Object.keys(snitches).map(function(key) {
-    return [key, snitches[key]];
-  });
 
-  // Sort the array based on the second element
-  items.sort(function(first, second) {
-    return second[1] - first[1];
-  });
-
-  // Create a new array with only the first top_num items
-  sorted_snitches_top = items.slice(0, top_num)
-
-  return sorted_snitches_top;
-}
-
-
+  // Make the bar chart!!!
   plot(chart, width, height) {
-      console.log(sorted_snitches_top)
-          // create scales!
 
           const xScale = d3.scaleBand()
               .domain(sorted_snitches_top.map(d => d[0]))
@@ -130,17 +132,8 @@ class BarChart extends Component{
               .style('text-anchor', 'middle')
               .text('Number of Trackers');
 
-    /*      const yGridlines = d3.axisLeft()
-              .scale(yScale)
-              .ticks(5)
-              .tickSize(-width,0,0)
-              .tickFormat('')
-
-          chart.append('g')
-              .call(yGridlines)
-              .classed('gridline', true);*/
-      }
-
+            }
+            
       drawChart() {
           const width = 800;
           const height = 500;
@@ -182,20 +175,20 @@ class BarChart extends Component{
           this.plot(chart, chartWidth, chartHeight);
 
           return el.toReact();
-      }
+    }
 
-      render() {
-        this.get_top_trackers()
-        return (
-          <div>
+    render() {
+      this.get_top_trackers()
+      return (
+        <div>
 
-           {this.drawChart()}
+         {this.drawChart()}
 
-           </div>
+         </div>
 
-        );
-      }
-  }
+      );
+    }
+}
 
 
 export default BarChart;

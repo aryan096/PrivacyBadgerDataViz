@@ -21,6 +21,7 @@ class Bubble extends Component {
   	});
   	return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
   }
+
   // colors for our color scheme
   getRandomColor(){
     let colorValues = ["#d69ae4", "#955fa2", "#74add4",
