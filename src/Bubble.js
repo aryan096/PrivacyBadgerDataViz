@@ -23,9 +23,9 @@ class Bubble extends Component {
   }
   // colors for our color scheme
   getRandomColor(){
-    let colorValues = ["#44015452", "#440154b0", "#74add4a3",
+    let colorValues = ["#d69ae4", "#955fa2", "#74add4",
     "#3e4989", "#31688e", "#26828e", "#1f9e89", "#35b779", "#6ece58",
-    "#b5de2b", "#fde725cf", "#fd9d25", "#25cbfd", "#e0793cb8"];
+    "#de4b7a", "#de9e9e", "#54ccd2", "#eca183"];
   return colorValues[Math.floor(Math.random() * colorValues.length)];
   }
 
@@ -39,7 +39,7 @@ class Bubble extends Component {
     }
     snitch_map = this.sort_trackers(snitch_map);
 
-    for(let i = 0; i < 14; i++){
+    for(let i = 0; i < 25; i++){
       if(snitch_map[i]){
         let new_entry = {label:snitch_map[i][0], value:snitch_map[i][1], color: this.getRandomColor()};
         output_list.push(new_entry);
@@ -50,6 +50,10 @@ class Bubble extends Component {
 
     return output_list;
   }
+
+  // HERE BEGINS CODE FOR BubbleChar
+
+
 
   bubbleClick(label){
     // This function is executed whenever a bubble is clicked. It looks through
@@ -68,21 +72,27 @@ class Bubble extends Component {
     return 0;
   }
 
+  legendClick = (label) =>{
+  console.log("Customer legend click func")
+  }
+
+
   render(){
     var trackers = this.get_top_10_trackers();
     return(
       <div class="tracker_bubbles">
       <BubbleChart
         graph= {{
-          zoom: 0.80,
-          offsetX: 0.05,
-          offsetY: -0.01,
+          zoom: 0.90,
+          offsetX: 0.00,
+          offsetY: -0.00,
           }}
-          width={800}
-          height={500}
-          padding={1} // optional value, number that set the padding between bubbles
-          showLegend={true} // optional value, pass false to disable the legend.
-          legendPercentage={20} // number that represent the % of with that legend going to use.
+          width={850}
+          height={800}
+          padding={-3} // optional value, number that set the padding between bubbles
+          showLegend={false} // optional value, pass false to disable the legend.
+          legendPercentage={30} // number that represent the % of with that legend going to use.
+          overflow={true}
           legendFont={{
             family: 'Arial',
             size: 12,
@@ -91,18 +101,20 @@ class Bubble extends Component {
           }}
           valueFont={{
             family: 'Arial',
-            size: 16,
+            size: 22,
             color: '#fff',
             weight: 'bold',
           }}
           labelFont={{
             family: 'Arial',
-            size: 12,
+            size: 10.5,
             color: '#fff',
             weight: 'bold',
+            marginTop: '-10px',
           }}
           //Custom bubble/legend click functions such as searching using the label, redirecting to other page
           bubbleClickFun={this.bubbleClick}
+          legendClickFun={this.legendClick}
           data={trackers}
         />
         </div>
