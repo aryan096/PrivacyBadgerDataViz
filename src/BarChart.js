@@ -118,7 +118,7 @@ class BarChart extends Component{
               .style('text-anchor', 'middle')
               .style('margin-top', '60px')
               .style('padding', '10px')
-              .text('Company');
+              .text('Website');
 
           chart.select('.y-axis')
               .append('text')
