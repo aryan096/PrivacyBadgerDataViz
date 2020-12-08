@@ -28,39 +28,35 @@ class Viz extends Component{
   render(){
     return (
       <div className="container viz-container" style={{ width: "750px"}}>
-
         <div className="viz-page">
-
-          <h1 class="header">Let's breakdown your data!</h1><hr></hr><br></br>
-
+          <h1 class="header">
+          <a href="/" style={{textDecoration: 'none'}}>
+          <button type="button" className="btn"
+          style={{backgroundColor: '#00203FFF', borderColor: 'none', color: 'white'}}>
+          Click to go back </button></a>  <hr></hr> Let's breakdown your data!</h1><br></br>
           <Alert variant='danger'>
-          We found a total of <b>{this.get_total_num_trackers()}
-          </b> trackers throughout your browsing data.<br></br>
+          We found a total of <b>{this.get_total_num_trackers()} trackers</b> throughout your browsing data.<br></br>
           Each tracker comes from a different top-level-domain.
           </Alert>
           <br></br>
-
-          <h4 class="header" style={{marginBottom: 20}}>What websites track you the most?</h4>
+          <h4 class="header" style={{marginBottom: 20}}>
+          What websites track you the most?</h4>
           <p>You probably have A LOT of trackers peeping your activity.
           We will first focus on the websites that track you the most.
+
           <br></br><br></br>
 
           The top 10 websites based on the number of trackers they had - </p>
-
           <div><BarChart /></div>
 
-          <br></br>
-          <hr></hr>
-          <br></br>
+          <br></br><br></br>
 
+          <p>Next, it might be useful to look at the list of trackers for each
+        of these top tracking websites.</p>
           <h4 class="header" style={{marginBottom: 20}}>
           What trackers were on these websites?</h4>
 
-          <p>It might be useful to look at the list of trackers for each
-          of these top tracking websites. Use the tab view below to see who was tracking
-          you on these websites.</p>
-
-          <div> <TrackerTab/> </div>
+           <div> <TrackerTab/> </div>
 
           <br></br>
           <hr></hr>
@@ -74,13 +70,9 @@ class Viz extends Component{
           where you can find more information.
           </p>
           <Alert class="bubble_alert" variant={'info'}>
-            Clicking a bubble will take you to the opt-out page of that tracker! (if it exists in our database)
+            Clicking a bubble will take you to the opt-out page of that tracker!
           </Alert>
         <div><Bubble/></div>
-
-        <hr></hr>
-        <p>We hope this helped you understand who is tracking you and where. If you didn't do so, consider
-        opting-out of your common trackers!</p>
       </div>
       </div>
 
