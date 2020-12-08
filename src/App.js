@@ -47,7 +47,7 @@ class App extends Component{
       <Router>
       <div className="App-header">
     <div className="container" style={{width: 800}}>
-        <h2 class="site_title">Visualizing the presence of trackers using Privacy Badger</h2>
+        <h2 class="site_title">Visualizing trackers accross the web using Privacy Badger</h2>
         <br></br>
           <p>
           Welcome!
