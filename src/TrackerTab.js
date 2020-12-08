@@ -74,7 +74,7 @@ class TrackerTab extends Component{
                 <Tab.Pane eventKey="first">
                   <p className="text-for-tabs"> Click on a tab to view a scrollable list of the trackers on that website!
                   </p>
-                </Tab.Pane>
+                </Tab.Pane> 
                 {trackers_list.map(datas =>
                   <Tab.Pane eventKey={datas[0]}>
                     <ul class="tracker-list">
