@@ -15,7 +15,7 @@ This is the project layout:
 - Posts file to data folder
 
 ### data:
-- Folder inside src that contains the uploaded .json file by user, all files uploaded will be named 'data.json' (should probably not do this)
+- Folder inside src that contains the uploaded .json file by user containing tracker dataset
 
 
 ## Project setup
